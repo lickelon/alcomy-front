@@ -11,7 +11,7 @@ const HeaderWrap = styled.header`
   height: 80px;
   background-color: dimgray;
   text-align: center;
-
+  z-index: 10;
   a {
     text-decoration: none;
     color: black;

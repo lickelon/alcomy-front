@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import RecipeStep from "../components/RecipeStep";
+import { getRecipeNameById } from "../services/api";
 
 const Container = styled.div``;
 
@@ -53,7 +56,18 @@ const PageWrap = styled.div`
 const RecipeViewPage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const name = searchParams.get("name");
+  const [recipeName, setRecipeName] = useState("");
+
+  useEffect(() => {
+    getRecipeNameById(id)
+      .then((_recipeName) => {
+        setRecipeName(_recipeName);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
+
   if (id === null) {
     return (
       <PageWrap>
@@ -63,10 +77,11 @@ const RecipeViewPage = () => {
       </PageWrap>
     );
   }
+
   return (
     <PageWrap>
       <Container>
-        <CocktailName>{name}</CocktailName>
+        <CocktailName>{recipeName}</CocktailName>
         <CocktailImage>대충 이미지 {id}</CocktailImage>
         <ol>
           {/* TODO recipeStep 컴포넌트 구현 (재료, 기법등을 통한 조합식 설명) */}
@@ -74,6 +89,7 @@ const RecipeViewPage = () => {
           <li>대충 만드는 방법2</li>
           <li>대충 만드는 방법3</li>
           <li>대충 만드는 방법4</li>
+          <RecipeStep method="stir" ingredient="mixture" />
         </ol>
       </Container>
     </PageWrap>

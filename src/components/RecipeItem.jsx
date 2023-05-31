@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getRecipeNameById } from "../services/api";
 
 const Box = styled.div`
-  float: left;
-  width: 230px;
-  height: 230px;
-  margin: 10px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 100%;
   background-color: #efe;
   border-radius: 10px;
   &:hover {
     background-color: #cec;
+  }
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate(${(props) => props.id * 22.5 - 22.5}deg); //test
+  }
+  p {
+    position: absolute;
+    margin: 0px;
+    bottom: 0%;
+    left: 50%;
+    white-space: pre;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -18,21 +34,25 @@ const RecipeItem = (props) => {
   const [recipeName, setRecipeName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/recipe/" + props.id)
-      .then((response) => response.json())
-      .then((data) => {
-        setRecipeName(data.name);
+    getRecipeNameById(props.id)
+      .then((_recipeName) => {
+        setRecipeName(_recipeName);
       })
-      .catch(() => {
-        setRecipeName("대충 레시피 이름" + props.id);
+      .catch((error) => {
+        console.error(error);
       });
   }, [props.id]);
 
   const ItemClicked = (id) => {
-    navigate("/view?id=" + id + "&name=" + recipeName); // TODO name을 넘기지 않고 view 페이지에서 이름 및 레시피 얻어오기
+    navigate("/view?id=" + id);
   };
 
-  return <Box onClick={() => ItemClicked(props.id)}>{recipeName}</Box>;
+  return (
+    <Box id={props.id} onClick={() => ItemClicked(props.id)}>
+      <img src="cocktail.png" alt="cocktail Img"></img>
+      <p>{recipeName}</p>
+    </Box>
+  );
 };
 
 export default RecipeItem;
