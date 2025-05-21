@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import styled from "styled-components";
 
 const Main = styled.main`
-  margin-top: 80px;
+  margin-top: 64px;
   padding: 0px;
 `;
 

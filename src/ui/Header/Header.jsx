@@ -8,7 +8,7 @@ const HeaderWrap = styled.header`
   left: 0;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 64px;
   background-color: dimgray;
   text-align: center;
   z-index: 10;
@@ -18,18 +18,19 @@ const HeaderWrap = styled.header`
   }
 
   ${Container} {
-    width: 1000px;
-    height: 80px;
-    display: inline-block;
-    background-color: #333;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #a692ba;
   }
   ${Logo} {
-    display: flex;
+    position: absolute;
     float: left;
-    background-color: #e0e8ee;
-    margin: 8px 20px 8px 20px;
+    margin-left: 20px;
   }
   & nav {
+    width: 100%;
     background-color: aliceblue;
     text-align: center;
     & > a {
@@ -50,7 +51,9 @@ const Header = (props) => {
     <HeaderWrap>
       <Container>
         <Logo>
-          <a href="/">Alcomy</a>
+          <a href="/">
+            <img src="alcomy_logo.png" alt="cocktail Img" height="64px" width="64px"/>
+          </a>
         </Logo>
         <nav>
           <a href="/list">칵테일 목록</a>
