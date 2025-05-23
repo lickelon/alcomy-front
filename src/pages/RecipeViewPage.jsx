@@ -89,7 +89,7 @@ const RecipeViewPage = () => {
           <li>대충 만드는 방법2</li>
           <li>대충 만드는 방법3</li>
           <li>대충 만드는 방법4</li>
-          <RecipeStep method="stir" ingredient="mixture" />
+          <RecipeStep method="stir" ingredient="mixture" amount=""/>
         </ol>
       </Container>
     </PageWrap>

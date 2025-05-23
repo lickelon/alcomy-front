@@ -17,9 +17,10 @@ const Step = styled.li`
 const RecipeStep = (props) => {
   return (
     <Step>
-      <a href="/stir">{props.method}</a>
+      <a href={"/method/"+props.method}>{props.method}</a>
       <span> </span>
-      <a href="/syrup">{props.ingredient}</a>
+      <a href={"/ingredient/"+props.ingredient}>{props.ingredient}</a>
+      <text>{" " + props.amount}</text>
     </Step>
   );
 };

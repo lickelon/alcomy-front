@@ -11,15 +11,15 @@ export const getRecipeNameById = (id) => {
   });
 };
 
-export const getRecipeList = (sort = "asc", pivot = null) => {
+export const getRecipeList = (sort = "name", order = "asc") => {
   let queryString = "?sort=" + sort;
-  if (pivot !== "") queryString += "&pivot=" + pivot;
+  if (order !== "") queryString += "&order=" + order;
   return new Promise((resolve, reject) => {
     fetch("http://127.0.0.1:8000/recipe/list/" + queryString)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.id_list);
-        resolve(data.id_list);
+        console.log(data);
+        resolve(data);
       })
       .catch(() => {
         reject("fetchError");

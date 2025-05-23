@@ -18,7 +18,6 @@ const Box = styled.div`
     height: 100%;
     top: 0;
     left: 0;
-    transform: rotate(${(props) => props.id * 22.5 - 22.5}deg); //test
   }
   p {
     position: absolute;

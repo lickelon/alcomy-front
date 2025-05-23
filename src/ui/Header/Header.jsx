@@ -52,11 +52,13 @@ const Header = (props) => {
       <Container>
         <Logo>
           <a href="/">
-            <img src="alcomy_logo.png" alt="cocktail Img" height="64px" width="64px"/>
+            <img src="/alcomy_logo.png" alt="Logo" height="64px" width="64px"/>
           </a>
         </Logo>
         <nav>
           <a href="/list">칵테일 목록</a>
+          <a href="/method">제조 기법</a>
+          <a href="/ingredient">재료 목록</a>
           <a href="/view">레시피 확인</a>
         </nav>
       </Container>
